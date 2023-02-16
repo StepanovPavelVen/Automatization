@@ -43,6 +43,13 @@ class Filter_page(Base):
     def get_accept(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.accept)))
 
+    def get_price_product(self):
+        time.sleep(2)
+        price_product = WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, '//span[@class = "x-product-card-description__price-single x-product-card-description__price-WEB8507_price_no_bold _price_k0rqx_8"]')))
+        text_price_product = price_product.text
+        return text_price_product
+
     # Actions
     def click_popularity(self):
         self.driver.execute_script("arguments[0].click()", self.get_click_filter_popularity())
@@ -63,6 +70,7 @@ class Filter_page(Base):
         self.get_accept().click()
         print('Отсортированно по цене (78 800 рублей)')
 
+
     # Methods
     def filter(self):
         self.click_popularity()
@@ -70,4 +78,3 @@ class Filter_page(Base):
         self.get_most_expensive_product()
         self.click_price()
         self.input_price(78800, 78800)
-        # self.get_price_product()

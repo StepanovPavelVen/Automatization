@@ -57,6 +57,12 @@ class User_page(Base):
     def get_done(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.done)))
 
+    def get_price_product_in_user_page(self):
+        price_product_in_user_page = WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, '//span[@discount="false"]')))
+        text_price_product_in_user_page = price_product_in_user_page.text
+        return text_price_product_in_user_page
+
     # Actions
                 # Ламода подставляет город автоматически. Чтобы у вас сработал тест надо убрать комментарии с блока кода ниже. Я закоментировал потому что ARROW DOWN не работает на MAC OS
                 #У ламоды баг. При попытке вставить город поле работает некорректно. Поэтому выход только такой. Спасибо за понимание

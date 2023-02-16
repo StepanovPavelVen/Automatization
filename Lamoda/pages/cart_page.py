@@ -22,6 +22,12 @@ class Cart_page(Base):
     def get_go_user_cart(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.go_to_user_page)))
 
+    def get_price_product_in_cart(self):
+        price_product_in_cart = WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, '//span[@discount="false"]')))
+        text_price_product_in_cart = price_product_in_cart.text
+        return text_price_product_in_cart
+
     # Actions
     def click_go_user_cart(self):
         time.sleep(2)
@@ -32,6 +38,4 @@ class Cart_page(Base):
     def cart_page_next(self):
         time.sleep(2)
         self.screenshot()
-        # self.get_price_product_in_cart()
-        # self.assert_price()
         self.click_go_user_cart()

@@ -21,14 +21,21 @@ def test_buy_product():
 
     fp = Filter_page(driver)
     fp.filter()
+    get_price = fp.get_price_product()
 
     buy_product = Select_product_page(driver)
     buy_product.buy_product()
 
     cp = Cart_page(driver)
+    get_price_in_cart = cp.get_price_product_in_cart()
+    assert get_price == get_price_in_cart
+    print('Цена товра = цене товара в корзине')
     cp.cart_page_next()
 
     up = User_page(driver)
+    get_price_in_user_page = up.get_price_product_in_user_page()
+    assert get_price == get_price_in_user_page
+    print('Цена товра = цене товара на странице оформления заказа')
     up.input_information_user()
 
     print('Finish test')

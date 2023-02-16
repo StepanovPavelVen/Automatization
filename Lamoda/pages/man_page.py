@@ -42,7 +42,7 @@ class Man_page(Base):
         self.open_lamoda_man()
         self.click_man_clothes_page()
         self.get_current_url()
-        self.assert_url('https://www.lamoda.ru/men-home/?sitelink=topmenuM')
+        self.assert_url('https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/?sitelink=topmenuM&l=3')
 
     # def open_man_shoes_page(self):
     #     self.open_lamoda_man()

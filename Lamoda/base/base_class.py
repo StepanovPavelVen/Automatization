@@ -45,22 +45,6 @@ class Base():
         assert get_url == result
         print ('Открыта нужная страница')
 
-    '''Метод получение цены товара'''
-
-    def get_price_product(self):
-        time.sleep(2)
-        price_product = WebDriverWait(self.driver, 30).until(
-            EC.element_to_be_clickable((By.XPATH, '//span[@class = "x-product-card-description__price-single x-product-card-description__price-WEB8507_price_no_bold _price_k0rqx_8"]')))
-        text_price_product = price_product.text
-        return text_price_product
-
-    '''Метод получения цены товара в корзине'''
-
-    def get_price_product_in_cart(self):
-        price_product_in_cart = WebDriverWait(self.driver, 30).until(
-            EC.element_to_be_clickable((By.XPATH, '//span[@discount="false"]')))
-        text_price_product_in_cart = price_product_in_cart.text
-        return text_price_product_in_cart
 
     '''Assert price'''
     def assert_price(self):
