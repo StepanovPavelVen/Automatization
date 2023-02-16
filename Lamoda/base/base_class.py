@@ -34,9 +34,9 @@ class Base():
     """Метод screenshot"""
 
     def screenshot(self):
-        date_screenshot = datetime.datetime.utcnow().strftime('%d.%m.%Y.%H.%M.%S')
+        date_screenshot = datetime.datetime.now().strftime("%Y.%m.%d_%H.%M.%S")
         name_screenshot = 'Screenshot' + date_screenshot + '.png'
-        self.driver.save_screenshot('./screen/' + name_screenshot)
+        self.driver.save_screenshot('/Users/pavel/PycharmProjects/Lamoda/screen/' + name_screenshot)
 
     '''Метод assert URL'''
 
@@ -45,10 +45,5 @@ class Base():
         assert get_url == result
         print ('Открыта нужная страница')
 
-
-    '''Assert price'''
-    def assert_price(self):
-        assert self.get_price_product() == self.get_price_product_in_cart()
-        print('Цены совпадают')
 
 

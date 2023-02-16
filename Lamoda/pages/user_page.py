@@ -1,11 +1,12 @@
 import time
-
+import allure
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class User_page(Base):
@@ -16,6 +17,7 @@ class User_page(Base):
 
     # Locators
     location = '//input[@id="city_name"]'
+    ufa = '//div[text()="г. Уфа, Башкортостан Респ."]'
     click_pickup = '//span[text()="Самовывоз"]'
     button_pick_up = '//button[text()="Выбрать пункт самовывоза"]'
     pickup_point = '//div[text()="Революционная, 107"]'
@@ -29,6 +31,9 @@ class User_page(Base):
     # Getters
     def get_location(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.location)))
+
+    def get_ufa(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.ufa)))
 
     def get_click_pickup(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.click_pickup)))
@@ -64,13 +69,10 @@ class User_page(Base):
         return text_price_product_in_user_page
 
     # Actions
-                # Ламода подставляет город автоматически. Чтобы у вас сработал тест надо убрать комментарии с блока кода ниже. Я закоментировал потому что ARROW DOWN не работает на MAC OS
-                #У ламоды баг. При попытке вставить город поле работает некорректно. Поэтому выход только такой. Спасибо за понимание
-    # def input_location(self):
-    #     self.get_location().send_keys(Keys.BACKSPACE * 100)
-    #     self.get_location().send_keys('г. Уфа')
-    #     self.get_location().send_keys(Keys.ARROW_DOWN)
-    #     self.get_location().send_keys(Keys.RETURN)
+    def input_location(self):
+        self.get_location().send_keys(Keys.BACKSPACE * 100)
+        self.get_location().send_keys('г. Уфа')
+        self.get_ufa().click()
 
     def click_samovyvoz(self):
         self.get_click_pickup().click()
@@ -111,20 +113,24 @@ class User_page(Base):
 
     # Methods
     def input_information_user(self):
-        self.get_current_url()
-        self.assert_url('https://www.lamoda.ru/checkout/cart/')
-        # self.input_location() Тоже снять комментарий!
-        self.click_samovyvoz()
-        self.select_pick_up()
-        self.click_pickup_point()
-        self.click_select_pickup_point()
-        self.input_first_name('Иван')
-        self.input_last_name('Иванов')
-        self.input_phone(1111111111)
-        self.input_email('test@ya.ru')
-        self.click_done()
-        time.sleep(2)
-        self.screenshot()
+        with allure.step('Input information'):
+            Logger.add_start_step(method="input_information_user")
+            self.get_current_url()
+            self.assert_url('https://www.lamoda.ru/checkout/cart/')
+            self.input_location()
+            self.click_samovyvoz()
+            self.select_pick_up()
+            self.click_pickup_point()
+            self.click_select_pickup_point()
+            self.input_first_name('Иван')
+            self.input_last_name('Иванов')
+            self.input_phone(1111111111)
+            self.input_email('test@ya.ru')
+            self.click_done()
+            time.sleep(2)
+            self.screenshot()
+            Logger.add_end_step(url=self.driver.current_url, method="input_information_user")
+
 
 
 

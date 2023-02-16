@@ -1,4 +1,5 @@
 import time
+import allure
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -6,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from base.base_class import Base
 from pages.Select_product_man_clothes import Select_product_page
+from utilities.logger import Logger
 
 
 class Cart_page(Base):
@@ -36,6 +38,9 @@ class Cart_page(Base):
 
     # Methods
     def cart_page_next(self):
-        time.sleep(2)
-        self.screenshot()
-        self.click_go_user_cart()
+        with allure.step('Go to user page'):
+            Logger.add_start_step(method="cart_page_next")
+            time.sleep(2)
+            self.screenshot()
+            self.click_go_user_cart()
+            Logger.add_end_step(url=self.driver.current_url, method="cart_page_next")

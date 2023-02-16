@@ -1,0 +1,77 @@
+
+-----
+Test: tests/test_buy_one_product.py::test_buy_product (call)
+Start time: 2023-02-16 22:04:44.603051
+Start name method: open_man_clothes_page
+
+End time: 2023-02-16 22:04:48.719389
+End name method: open_man_clothes_page
+URL: https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/?sitelink=topmenuM&l=3
+
+-----
+
+-----
+Test: tests/test_buy_one_product.py::test_buy_product (call)
+Start time: 2023-02-16 22:04:48.719870
+Start name method: filter
+
+End time: 2023-02-16 22:04:52.880980
+End name method: filter
+URL: https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/?sitelink=topmenuM&l=3&sort=price_desc&price=78800,78800
+
+-----
+
+-----
+Test: tests/test_buy_one_product.py::test_buy_product (call)
+Start time: 2023-02-16 22:04:54.945249
+Start name method: buy_product
+
+End time: 2023-02-16 22:04:58.903316
+End name method: buy_product
+URL: https://www.lamoda.ru/checkout/cart/
+
+-----
+
+-----
+Test: tests/test_buy_one_product.py::test_buy_product (call)
+Start time: 2023-02-16 22:04:58.903674
+Start name method: assert price = price_in_cart
+
+End time: 2023-02-16 22:04:59.619354
+End name method: assert price = price_in_cart
+URL: https://www.lamoda.ru/checkout/cart/
+
+-----
+
+-----
+Test: tests/test_buy_one_product.py::test_buy_product (call)
+Start time: 2023-02-16 22:04:59.619623
+Start name method: cart_page_next
+
+End time: 2023-02-16 22:05:04.052789
+End name method: cart_page_next
+URL: https://www.lamoda.ru/checkout/cart/
+
+-----
+
+-----
+Test: tests/test_buy_one_product.py::test_buy_product (call)
+Start time: 2023-02-16 22:05:04.083511
+Start name method: assert price = price_in_user_page
+
+End time: 2023-02-16 22:05:05.202210
+End name method: assert price = price_in_user_page
+URL: https://www.lamoda.ru/checkout/cart/
+
+-----
+
+-----
+Test: tests/test_buy_one_product.py::test_buy_product (call)
+Start time: 2023-02-16 22:05:05.202498
+Start name method: input_information_user
+
+End time: 2023-02-16 22:05:14.864670
+End name method: input_information_user
+URL: https://www.lamoda.ru/checkout/cart/
+
+-----

@@ -1,10 +1,11 @@
 import time
-
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class Select_product_page(Base):
@@ -59,13 +60,16 @@ class Select_product_page(Base):
 
     # Methods
     def buy_product(self):
-        self.click_product()
-        self.get_current_url()
-        self.assert_url('https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/?sitelink=topmenuM&l=3&sort=price_desc&price=78800%2C78800')
-        time.sleep(2)
-        self.screenshot()
-        self.click_menu_select_size()
-        self.click_select_size()
-        self.click_add_product_to_cart()
-        self.click_go_to_cart()
+        with allure.step('Buy product'):
+            Logger.add_start_step(method="buy_product")
+            self.click_product()
+            self.get_current_url()
+            self.assert_url('https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/?sitelink=topmenuM&l=3&sort=price_desc&price=78800%2C78800')
+            time.sleep(2)
+            self.screenshot()
+            self.click_menu_select_size()
+            self.click_select_size()
+            self.click_add_product_to_cart()
+            self.click_go_to_cart()
+            Logger.add_end_step(url=self.driver.current_url, method="buy_product")
 

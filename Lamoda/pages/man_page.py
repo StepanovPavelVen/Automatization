@@ -1,8 +1,11 @@
+import time
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class Man_page(Base):
@@ -39,15 +42,12 @@ class Man_page(Base):
 
     # Methods
     def open_man_clothes_page(self):
-        self.open_lamoda_man()
-        self.click_man_clothes_page()
-        self.get_current_url()
-        self.assert_url('https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/?sitelink=topmenuM&l=3')
+        with allure.step('Open man clothes page'):
+            Logger.add_start_step(method="open_man_clothes_page")
+            self.open_lamoda_man()
+            self.click_man_clothes_page()
+            self.get_current_url()
+            time.sleep(1)
+            self.assert_url('https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/?sitelink=topmenuM&l=3')
+            Logger.add_end_step(url =self.driver.current_url, method="open_man_clothes_page")
 
-    # def open_man_shoes_page(self):
-    #     self.open_lamoda_man()
-    #     self.click_man_shoes_page()
-    #
-    # def open_accessories_page(self):
-    #     self.open_lamoda_man()
-    #     self.click_accessories_page()
